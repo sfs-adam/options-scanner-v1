@@ -1,0 +1,235 @@
+{
+  "name": "46 names",
+  "tickers": [
+    {
+      "symbol": "SOUN",
+      "name": "SOUN",
+      "is_etf": false
+    },
+    {
+      "symbol": "AI",
+      "name": "AI",
+      "is_etf": false
+    },
+    {
+      "symbol": "BBAI",
+      "name": "BBAI",
+      "is_etf": false
+    },
+    {
+      "symbol": "TEM",
+      "name": "TEM",
+      "is_etf": false
+    },
+    {
+      "symbol": "RGTI",
+      "name": "RGTI",
+      "is_etf": false
+    },
+    {
+      "symbol": "QBTS",
+      "name": "QBTS",
+      "is_etf": false
+    },
+    {
+      "symbol": "SPY",
+      "name": "SPY",
+      "is_etf": false
+    },
+    {
+      "symbol": "QQQ",
+      "name": "QQQ",
+      "is_etf": false
+    },
+    {
+      "symbol": "IWM",
+      "name": "IWM",
+      "is_etf": false
+    },
+    {
+      "symbol": "DIA",
+      "name": "DIA",
+      "is_etf": false
+    },
+    {
+      "symbol": "SMH",
+      "name": "SMH",
+      "is_etf": false
+    },
+    {
+      "symbol": "XLF",
+      "name": "XLF",
+      "is_etf": false
+    },
+    {
+      "symbol": "XLE",
+      "name": "XLE",
+      "is_etf": false
+    },
+    {
+      "symbol": "XLK",
+      "name": "XLK",
+      "is_etf": false
+    },
+    {
+      "symbol": "ARKK",
+      "name": "ARKK",
+      "is_etf": false
+    },
+    {
+      "symbol": "IBIT",
+      "name": "IBIT",
+      "is_etf": false
+    },
+    {
+      "symbol": "KO",
+      "name": "KO",
+      "is_etf": false
+    },
+    {
+      "symbol": "PEP",
+      "name": "PEP",
+      "is_etf": false
+    },
+    {
+      "symbol": "PG",
+      "name": "PG",
+      "is_etf": false
+    },
+    {
+      "symbol": "JNJ",
+      "name": "JNJ",
+      "is_etf": false
+    },
+    {
+      "symbol": "ABBV",
+      "name": "ABBV",
+      "is_etf": false
+    },
+    {
+      "symbol": "MRK",
+      "name": "MRK",
+      "is_etf": false
+    },
+    {
+      "symbol": "COST",
+      "name": "COST",
+      "is_etf": false
+    },
+    {
+      "symbol": "MCD",
+      "name": "MCD",
+      "is_etf": false
+    },
+    {
+      "symbol": "HD",
+      "name": "HD",
+      "is_etf": false
+    },
+    {
+      "symbol": "LOW",
+      "name": "LOW",
+      "is_etf": false
+    },
+    {
+      "symbol": "GS",
+      "name": "GS",
+      "is_etf": false
+    },
+    {
+      "symbol": "MS",
+      "name": "MS",
+      "is_etf": false
+    },
+    {
+      "symbol": "BAC",
+      "name": "BAC",
+      "is_etf": false
+    },
+    {
+      "symbol": "C",
+      "name": "C",
+      "is_etf": false
+    },
+    {
+      "symbol": "SCHW",
+      "name": "SCHW",
+      "is_etf": false
+    },
+    {
+      "symbol": "BLK",
+      "name": "BLK",
+      "is_etf": false
+    },
+    {
+      "symbol": "KKR",
+      "name": "KKR",
+      "is_etf": false
+    },
+    {
+      "symbol": "BX",
+      "name": "BX",
+      "is_etf": false
+    },
+    {
+      "symbol": "COIN",
+      "name": "COIN",
+      "is_etf": false
+    },
+    {
+      "symbol": "IBKR",
+      "name": "IBKR",
+      "is_etf": false
+    },
+    {
+      "symbol": "URI",
+      "name": "URI",
+      "is_etf": false
+    },
+    {
+      "symbol": "PWR",
+      "name": "PWR",
+      "is_etf": false
+    },
+    {
+      "symbol": "FIX",
+      "name": "FIX",
+      "is_etf": false
+    },
+    {
+      "symbol": "VRT",
+      "name": "VRT",
+      "is_etf": false
+    },
+    {
+      "symbol": "NUE",
+      "name": "NUE",
+      "is_etf": false
+    },
+    {
+      "symbol": "FCX",
+      "name": "FCX",
+      "is_etf": false
+    },
+    {
+      "symbol": "COP",
+      "name": "COP",
+      "is_etf": false
+    },
+    {
+      "symbol": "SLB",
+      "name": "SLB",
+      "is_etf": false
+    },
+    {
+      "symbol": "HAL",
+      "name": "HAL",
+      "is_etf": false
+    },
+    {
+      "symbol": "OXY",
+      "name": "OXY",
+      "is_etf": false
+    }
+  ]
+}

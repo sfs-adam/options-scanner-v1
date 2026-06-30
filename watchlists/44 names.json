@@ -1,0 +1,225 @@
+{
+  "name": "44 names",
+  "tickers": [
+    {
+      "symbol": "NVDA",
+      "name": "NVDA",
+      "is_etf": false
+    },
+    {
+      "symbol": "MSFT",
+      "name": "MSFT",
+      "is_etf": false
+    },
+    {
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "is_etf": false
+    },
+    {
+      "symbol": "AMZN",
+      "name": "AMZN",
+      "is_etf": false
+    },
+    {
+      "symbol": "META",
+      "name": "META",
+      "is_etf": false
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "GOOGL",
+      "is_etf": false
+    },
+    {
+      "symbol": "TSLA",
+      "name": "TSLA",
+      "is_etf": false
+    },
+    {
+      "symbol": "BRK.B",
+      "name": "BRK.B",
+      "is_etf": false
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPM",
+      "is_etf": false
+    },
+    {
+      "symbol": "WMT",
+      "name": "WMT",
+      "is_etf": false
+    },
+    {
+      "symbol": "PLTR",
+      "name": "PLTR",
+      "is_etf": false
+    },
+    {
+      "symbol": "CRM",
+      "name": "CRM",
+      "is_etf": false
+    },
+    {
+      "symbol": "NOW",
+      "name": "NOW",
+      "is_etf": false
+    },
+    {
+      "symbol": "ORCL",
+      "name": "ORCL",
+      "is_etf": false
+    },
+    {
+      "symbol": "NFLX",
+      "name": "NFLX",
+      "is_etf": false
+    },
+    {
+      "symbol": "AMD",
+      "name": "AMD",
+      "is_etf": false
+    },
+    {
+      "symbol": "AVGO",
+      "name": "AVGO",
+      "is_etf": false
+    },
+    {
+      "symbol": "ADBE",
+      "name": "ADBE",
+      "is_etf": false
+    },
+    {
+      "symbol": "INTU",
+      "name": "INTU",
+      "is_etf": false
+    },
+    {
+      "symbol": "UBER",
+      "name": "UBER",
+      "is_etf": false
+    },
+    {
+      "symbol": "CAT",
+      "name": "CAT",
+      "is_etf": false
+    },
+    {
+      "symbol": "DE",
+      "name": "DE",
+      "is_etf": false
+    },
+    {
+      "symbol": "GE",
+      "name": "GE",
+      "is_etf": false
+    },
+    {
+      "symbol": "RTX",
+      "name": "RTX",
+      "is_etf": false
+    },
+    {
+      "symbol": "LMT",
+      "name": "LMT",
+      "is_etf": false
+    },
+    {
+      "symbol": "ETN",
+      "name": "ETN",
+      "is_etf": false
+    },
+    {
+      "symbol": "PH",
+      "name": "PH",
+      "is_etf": false
+    },
+    {
+      "symbol": "TT",
+      "name": "TT",
+      "is_etf": false
+    },
+    {
+      "symbol": "HON",
+      "name": "HON",
+      "is_etf": false
+    },
+    {
+      "symbol": "UNP",
+      "name": "UNP",
+      "is_etf": false
+    },
+    {
+      "symbol": "RKLB",
+      "name": "RKLB",
+      "is_etf": false
+    },
+    {
+      "symbol": "QNT",
+      "name": "QNT",
+      "is_etf": false
+    },
+    {
+      "symbol": "IONQ",
+      "name": "IONQ",
+      "is_etf": false
+    },
+    {
+      "symbol": "HIMS",
+      "name": "HIMS",
+      "is_etf": false
+    },
+    {
+      "symbol": "CAVA",
+      "name": "CAVA",
+      "is_etf": false
+    },
+    {
+      "symbol": "CELH",
+      "name": "CELH",
+      "is_etf": false
+    },
+    {
+      "symbol": "APP",
+      "name": "APP",
+      "is_etf": false
+    },
+    {
+      "symbol": "RDDT",
+      "name": "RDDT",
+      "is_etf": false
+    },
+    {
+      "symbol": "HOOD",
+      "name": "HOOD",
+      "is_etf": false
+    },
+    {
+      "symbol": "DASH",
+      "name": "DASH",
+      "is_etf": false
+    },
+    {
+      "symbol": "ASTS",
+      "name": "ASTS",
+      "is_etf": false
+    },
+    {
+      "symbol": "LUNR",
+      "name": "LUNR",
+      "is_etf": false
+    },
+    {
+      "symbol": "ACHR",
+      "name": "ACHR",
+      "is_etf": false
+    },
+    {
+      "symbol": "JOBY",
+      "name": "JOBY",
+      "is_etf": false
+    }
+  ]
+}

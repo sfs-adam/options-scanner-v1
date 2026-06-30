@@ -1,0 +1,200 @@
+{
+  "name": "40 names UDP6302026",
+  "tickers": [
+    {
+      "symbol": "ONTO",
+      "name": "ONTO",
+      "is_etf": false
+    },
+    {
+      "symbol": "RVMD",
+      "name": "RVMD",
+      "is_etf": false
+    },
+    {
+      "symbol": "SIMO",
+      "name": "SIMO",
+      "is_etf": false
+    },
+    {
+      "symbol": "BTSG",
+      "name": "BTSG",
+      "is_etf": false
+    },
+    {
+      "symbol": "ANET",
+      "name": "ANET",
+      "is_etf": false
+    },
+    {
+      "symbol": "CYTK",
+      "name": "CYTK",
+      "is_etf": false
+    },
+    {
+      "symbol": "VSAT",
+      "name": "VSAT",
+      "is_etf": false
+    },
+    {
+      "symbol": "ALGM",
+      "name": "ALGM",
+      "is_etf": false
+    },
+    {
+      "symbol": "FWONA",
+      "name": "FWONA",
+      "is_etf": false
+    },
+    {
+      "symbol": "V",
+      "name": "V",
+      "is_etf": false
+    },
+    {
+      "symbol": "MTZ",
+      "name": "MTZ",
+      "is_etf": false
+    },
+    {
+      "symbol": "DDOG",
+      "name": "DDOG",
+      "is_etf": false
+    },
+    {
+      "symbol": "XYZ",
+      "name": "XYZ",
+      "is_etf": false
+    },
+    {
+      "symbol": "NBIX",
+      "name": "NBIX",
+      "is_etf": false
+    },
+    {
+      "symbol": "IONS",
+      "name": "IONS",
+      "is_etf": false
+    },
+    {
+      "symbol": "SNOW",
+      "name": "SNOW",
+      "is_etf": false
+    },
+    {
+      "symbol": "LSCC",
+      "name": "LSCC",
+      "is_etf": false
+    },
+    {
+      "symbol": "RYAAY",
+      "name": "RYAAY",
+      "is_etf": false
+    },
+    {
+      "symbol": "LLY",
+      "name": "LLY",
+      "is_etf": false
+    },
+    {
+      "symbol": "PANW",
+      "name": "PANW",
+      "is_etf": false
+    },
+    {
+      "symbol": "JAZZ",
+      "name": "JAZZ",
+      "is_etf": false
+    },
+    {
+      "symbol": "PFGC",
+      "name": "PFGC",
+      "is_etf": false
+    },
+    {
+      "symbol": "LH",
+      "name": "LH",
+      "is_etf": false
+    },
+    {
+      "symbol": "MDB",
+      "name": "MDB",
+      "is_etf": false
+    },
+    {
+      "symbol": "CRWD",
+      "name": "CRWD",
+      "is_etf": false
+    },
+    {
+      "symbol": "NLY",
+      "name": "NLY",
+      "is_etf": false
+    },
+    {
+      "symbol": "GL",
+      "name": "GL",
+      "is_etf": false
+    },
+    {
+      "symbol": "IFF",
+      "name": "IFF",
+      "is_etf": false
+    },
+    {
+      "symbol": "COHR",
+      "name": "COHR",
+      "is_etf": false
+    },
+    {
+      "symbol": "ARMK",
+      "name": "ARMK",
+      "is_etf": false
+    },
+    {
+      "symbol": "USFD",
+      "name": "USFD",
+      "is_etf": false
+    },
+    {
+      "symbol": "DOCN",
+      "name": "DOCN",
+      "is_etf": false
+    },
+    {
+      "symbol": "MKSI",
+      "name": "MKSI",
+      "is_etf": false
+    },
+    {
+      "symbol": "CGNX",
+      "name": "CGNX",
+      "is_etf": false
+    },
+    {
+      "symbol": "DT",
+      "name": "DT",
+      "is_etf": false
+    },
+    {
+      "symbol": "NI",
+      "name": "NI",
+      "is_etf": false
+    },
+    {
+      "symbol": "CRL",
+      "name": "CRL",
+      "is_etf": false
+    },
+    {
+      "symbol": "OC",
+      "name": "OC",
+      "is_etf": false
+    },
+    {
+      "symbol": "GLW",
+      "name": "GLW",
+      "is_etf": false
+    }
+  ]
+}

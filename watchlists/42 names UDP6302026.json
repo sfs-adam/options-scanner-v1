@@ -1,0 +1,215 @@
+{
+  "name": "42 names UDP6302026",
+  "tickers": [
+    {
+      "symbol": "HEI",
+      "name": "HEI",
+      "is_etf": false
+    },
+    {
+      "symbol": "NET",
+      "name": "NET",
+      "is_etf": false
+    },
+    {
+      "symbol": "LYG",
+      "name": "LYG",
+      "is_etf": false
+    },
+    {
+      "symbol": "HEI.A",
+      "name": "HEI.A",
+      "is_etf": false
+    },
+    {
+      "symbol": "ICLR",
+      "name": "ICLR",
+      "is_etf": false
+    },
+    {
+      "symbol": "SHW",
+      "name": "SHW",
+      "is_etf": false
+    },
+    {
+      "symbol": "FDX",
+      "name": "FDX",
+      "is_etf": false
+    },
+    {
+      "symbol": "CSL",
+      "name": "CSL",
+      "is_etf": false
+    },
+    {
+      "symbol": "AEE",
+      "name": "AEE",
+      "is_etf": false
+    },
+    {
+      "symbol": "AGX",
+      "name": "AGX",
+      "is_etf": false
+    },
+    {
+      "symbol": "ABNB",
+      "name": "ABNB",
+      "is_etf": false
+    },
+    {
+      "symbol": "NCLH",
+      "name": "NCLH",
+      "is_etf": false
+    },
+    {
+      "symbol": "CNH",
+      "name": "CNH",
+      "is_etf": false
+    },
+    {
+      "symbol": "MGA",
+      "name": "MGA",
+      "is_etf": false
+    },
+    {
+      "symbol": "AGNC",
+      "name": "AGNC",
+      "is_etf": false
+    },
+    {
+      "symbol": "PEG",
+      "name": "PEG",
+      "is_etf": false
+    },
+    {
+      "symbol": "MAS",
+      "name": "MAS",
+      "is_etf": false
+    },
+    {
+      "symbol": "MGM",
+      "name": "MGM",
+      "is_etf": false
+    },
+    {
+      "symbol": "RVTY",
+      "name": "RVTY",
+      "is_etf": false
+    },
+    {
+      "symbol": "GSK",
+      "name": "GSK",
+      "is_etf": false
+    },
+    {
+      "symbol": "FFIV",
+      "name": "FFIV",
+      "is_etf": false
+    },
+    {
+      "symbol": "TECH",
+      "name": "TECH",
+      "is_etf": false
+    },
+    {
+      "symbol": "TPL",
+      "name": "TPL",
+      "is_etf": false
+    },
+    {
+      "symbol": "HSBC",
+      "name": "HSBC",
+      "is_etf": false
+    },
+    {
+      "symbol": "MEDP",
+      "name": "MEDP",
+      "is_etf": false
+    },
+    {
+      "symbol": "RIVN",
+      "name": "RIVN",
+      "is_etf": false
+    },
+    {
+      "symbol": "LII",
+      "name": "LII",
+      "is_etf": false
+    },
+    {
+      "symbol": "SWK",
+      "name": "SWK",
+      "is_etf": false
+    },
+    {
+      "symbol": "ESS",
+      "name": "ESS",
+      "is_etf": false
+    },
+    {
+      "symbol": "BMO",
+      "name": "BMO",
+      "is_etf": false
+    },
+    {
+      "symbol": "DLTR",
+      "name": "DLTR",
+      "is_etf": false
+    },
+    {
+      "symbol": "LINE",
+      "name": "LINE",
+      "is_etf": false
+    },
+    {
+      "symbol": "ABEV",
+      "name": "ABEV",
+      "is_etf": false
+    },
+    {
+      "symbol": "ASTS",
+      "name": "ASTS",
+      "is_etf": false
+    },
+    {
+      "symbol": "FAST",
+      "name": "FAST",
+      "is_etf": false
+    },
+    {
+      "symbol": "TROW",
+      "name": "TROW",
+      "is_etf": false
+    },
+    {
+      "symbol": "MS/PP",
+      "name": "MS/PP",
+      "is_etf": false
+    },
+    {
+      "symbol": "AGNCL",
+      "name": "AGNCL",
+      "is_etf": false
+    },
+    {
+      "symbol": "MS/PE",
+      "name": "MS/PE",
+      "is_etf": false
+    },
+    {
+      "symbol": "BTSGU",
+      "name": "BTSGU",
+      "is_etf": false
+    },
+    {
+      "symbol": "MS/PI",
+      "name": "MS/PI",
+      "is_etf": false
+    },
+    {
+      "symbol": "AGNCO",
+      "name": "AGNCO",
+      "is_etf": false
+    }
+  ]
+}

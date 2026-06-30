@@ -1,0 +1,125 @@
+{
+  "name": "06-30-2026",
+  "tickers": [
+    {
+      "symbol": "BYRN",
+      "name": "BYRN",
+      "is_etf": false
+    },
+    {
+      "symbol": "PCYO",
+      "name": "PCYO",
+      "is_etf": false
+    },
+    {
+      "symbol": "SMPL",
+      "name": "SMPL",
+      "is_etf": false
+    },
+    {
+      "symbol": "BSET",
+      "name": "BSET",
+      "is_etf": false
+    },
+    {
+      "symbol": "SAR",
+      "name": "SAR",
+      "is_etf": false
+    },
+    {
+      "symbol": "LEVI",
+      "name": "LEVI",
+      "is_etf": false
+    },
+    {
+      "symbol": "FC",
+      "name": "FC",
+      "is_etf": false
+    },
+    {
+      "symbol": "EPAC",
+      "name": "EPAC",
+      "is_etf": false
+    },
+    {
+      "symbol": "FAST",
+      "name": "FAST",
+      "is_etf": false
+    },
+    {
+      "symbol": "GBX",
+      "name": "GBX",
+      "is_etf": false
+    },
+    {
+      "symbol": "BAC",
+      "name": "BAC",
+      "is_etf": false
+    },
+    {
+      "symbol": "KRUS",
+      "name": "KRUS",
+      "is_etf": false
+    },
+    {
+      "symbol": "PENG",
+      "name": "PENG",
+      "is_etf": false
+    },
+    {
+      "symbol": "WFC",
+      "name": "WFC",
+      "is_etf": false
+    },
+    {
+      "symbol": "DAL",
+      "name": "DAL",
+      "is_etf": false
+    },
+    {
+      "symbol": "MSM",
+      "name": "MSM",
+      "is_etf": false
+    },
+    {
+      "symbol": "LNN",
+      "name": "LNN",
+      "is_etf": false
+    },
+    {
+      "symbol": "PEP",
+      "name": "PEP",
+      "is_etf": false
+    },
+    {
+      "symbol": "STZ",
+      "name": "STZ",
+      "is_etf": false
+    },
+    {
+      "symbol": "AZZ",
+      "name": "AZZ",
+      "is_etf": false
+    },
+    {
+      "symbol": "PSMT",
+      "name": "PSMT",
+      "is_etf": false
+    },
+    {
+      "symbol": "WDFC",
+      "name": "WDFC",
+      "is_etf": false
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPM",
+      "is_etf": false
+    },
+    {
+      "symbol": "GS",
+      "name": "GS",
+      "is_etf": false
+    }
+  ]
+}

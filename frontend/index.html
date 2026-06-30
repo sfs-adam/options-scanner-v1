@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Options Scanner v1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 14px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f1117;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22253a;
+      --border: #2d3148;
+      --border-light: #3d4060;
+      --text: #e2e8f0;
+      --text-muted: #8892a4;
+      --text-dim: #5a6475;
+      --accent: #4f8ef7;
+      --accent-glow: rgba(79,142,247,0.15);
+      --green: #22c55e;
+      --green-bg: rgba(34,197,94,0.12);
+      --green-border: rgba(34,197,94,0.3);
+      --red: #ef4444;
+      --red-bg: rgba(239,68,68,0.12);
+      --red-border: rgba(239,68,68,0.3);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245,158,11,0.12);
+      --amber-border: rgba(245,158,11,0.3);
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --radius: 10px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .logo-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .header-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .header-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      border-left: 1px solid var(--border-light);
+      padding-left: 12px;
+    }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      height: calc(100vh - 56px);
+      position: sticky;
+      top: 56px;
+    }
+    .main { overflow-y: auto; padding: 24px; }
+
+    /* ── SIDEBAR ── */
+    .sidebar-section {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+
+    .watchlist-load {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    select {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 6px 8px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    select:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+
+    textarea {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      resize: vertical;
+      min-height: 180px;
+      line-height: 1.6;
+    }
+    textarea:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+    textarea::placeholder { color: var(--text-dim); }
+
+    .ticker-format-hint {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .save-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .save-row input {
+      flex: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      font-family: inherit;
+    }
+    .save-row input:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+    .save-row input::placeholder { color: var(--text-dim); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      border: none;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #3a78e0; }
+    .btn-primary:disabled { background: #2d3148; color: var(--text-dim); cursor: not-allowed; }
+    .btn-ghost {
+      background: var(--surface2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--border-light); color: var(--text); }
+    .btn-danger {
+      background: var(--red-bg);
+      color: var(--red);
+      border: 1px solid var(--red-border);
+    }
+    .btn-danger:hover { background: rgba(239,68,68,0.2); }
+
+    .run-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 4px;
+      border-radius: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-bar-wrap {
+      height: 3px;
+      background: var(--surface2);
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .progress-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+      text-align: center;
+      display: none;
+    }
+
+    /* ── SUMMARY BAR ── */
+    .summary-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .summary-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid;
+    }
+    .chip-buy   { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+    .chip-watch { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
+    .chip-no    { background: var(--red-bg);  color: var(--red);   border-color: var(--red-border);   }
+    .chip-avg   { background: var(--surface2); color: var(--text-muted); border-color: var(--border); }
+
+    /* ── RESULT CARDS ── */
+    .results-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .result-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+    .result-card:hover { border-color: var(--border-light); }
+    .result-card.buy-call { border-left: 3px solid var(--green); }
+    .result-card.no-trade { border-left: 3px solid var(--text-dim); opacity: 0.75; }
+    .result-card.no-trade:hover { opacity: 1; }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .card-header:hover { background: rgba(255,255,255,0.02); }
+
+    .card-left { display: flex; align-items: center; gap: 16px; }
+    .ticker-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text);
+    }
+    .company-name { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
+
+    .trade-badge {
+      padding: 4px 12px;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .badge-buy   { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+    .badge-watch { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+    .badge-no    { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+    .result-card.watch { border-left: 3px solid var(--amber); }
+
+    /* Watch reasons panel */
+    .watch-panel {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 16px;
+    }
+    .watch-panel-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .watch-reasons { list-style: none; }
+    .watch-reasons li {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(245,158,11,0.15);
+      line-height: 1.5;
+    }
+    .watch-reasons li:last-child { border-bottom: none; }
+    .watch-reasons li strong { color: var(--amber); }
+
+    /* Missing requirements block inside watch panel */
+    .missing-reqs { margin-top: 12px; border-top: 1px solid rgba(245,158,11,0.2); padding-top: 10px; }
+    .missing-reqs-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .missing-tier-header {
+      font-size: 0.63rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin: 10px 0 5px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--border);
+    }
+    .missing-tier-header:first-of-type { margin-top: 0; }
+    .missing-req-row {
+      display: grid;
+      grid-template-columns: 16px 120px 1fr;
+      align-items: baseline;
+      gap: 6px;
+      padding: 4px 0;
+      font-size: 0.79rem;
+    }
+    .missing-req-icon { font-size: 0.72rem; }
+    .missing-req-icon.unmet { color: var(--amber); }
+    .missing-req-icon.met   { color: var(--green); }
+    .missing-req-label { font-weight: 600; color: var(--text); }
+    .missing-req-label.met  { color: var(--green); }
+    .missing-req-detail { color: var(--text-dim); font-size: 0.75rem; }
+    .missing-req-detail .current { color: var(--text-muted); }
+    .missing-req-detail .arrow   { margin: 0 4px; color: var(--text-dim); }
+    .missing-req-detail .target  { font-style: italic; }
+
+    .card-right { display: flex; align-items: center; gap: 20px; }
+
+    .score-circle {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-weight: 700;
+      font-size: 1rem;
+      border: 2px solid;
+    }
+    .score-high  { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+    .score-mid   { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
+    .score-low   { border-color: var(--text-dim); color: var(--text-dim); background: var(--surface2); }
+
+    /* confidence mini-pill in card header */
+    .confidence-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+    }
+    .confidence-pct { font-size: 1rem; font-weight: 700; color: var(--accent); }
+    .confidence-lbl { font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* confidence checklist in expanded detail */
+    .confidence-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .conf-check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.78rem;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.4;
+    }
+    .conf-check-row:last-child { border-bottom: none; }
+    .conf-check-icon { font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+    .conf-check-label { color: var(--text-muted); flex: 1; }
+    .conf-check-note { font-size: 0.7rem; color: var(--text-dim); margin-top: 1px; }
+    .conf-check-row.pass .conf-check-label { color: var(--text); }
+    .conf-summary { margin-top: 8px; font-size: 0.75rem; color: var(--text-muted); text-align: right; }
+    .conf-pct-large { font-size: 1rem; font-weight: 700; color: var(--accent); }
+
+    /* #1 ranked panel */
+    .ranked-first-panel {
+      background: linear-gradient(135deg, rgba(79,142,247,0.08) 0%, rgba(34,197,94,0.06) 100%);
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 16px;
+    }
+    .ranked-first-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .ranked-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(79,142,247,0.3);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+    .ranked-first-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .ranked-reasons {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .ranked-reasons li {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 3px 0;
+      line-height: 1.5;
+    }
+    .ranked-reasons li::before { content: "✓ "; color: var(--accent); font-weight: 600; }
+
+    .chevron { color: var(--text-dim); font-size: 0.9rem; transition: transform 0.2s; }
+    .card-header.open .chevron { transform: rotate(180deg); }
+
+    /* ── CARD BODY (collapsed) ── */
+    .card-summary {
+      padding: 0 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .catalyst-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 5px 10px;
+      background: var(--surface2);
+      border-radius: 6px;
+      border-left: 3px solid var(--border-light);
+    }
+    .result-card.buy .catalyst-line  { border-left-color: var(--green); }
+    .result-card.watch .catalyst-line { border-left-color: var(--amber); }
+    .catalyst-icon { font-size: 0.7rem; color: var(--text-dim); flex-shrink: 0; }
+    .result-card.buy .catalyst-icon  { color: var(--green); }
+    .result-card.watch .catalyst-icon { color: var(--amber); }
+    .catalyst-text { line-height: 1.4; }
+
+    .summary-reasons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .reason-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .reason-tag.block { background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
+
+    /* ── EXPANDED DETAIL ── */
+    .card-detail {
+      display: none;
+      padding: 0 18px 18px;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .card-detail.open { display: block; }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .detail-panel {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .detail-panel-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+
+    /* Trade card */
+    .trade-card {
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .trade-card.no-trade-card {
+      background: var(--red-bg);
+      border-color: var(--red-border);
+    }
+    .trade-card-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .trade-main-label {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .no-trade-label { color: var(--red); }
+    .trade-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .trade-meta-item { }
+    .trade-meta-label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+    .trade-meta-val { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+
+    /* Why explanation */
+    .why-list { list-style: none; }
+    .why-list li {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 4px 0;
+      line-height: 1.5;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-list li:last-child { border-bottom: none; }
+
+    /* Score breakdown */
+    .breakdown-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.78rem;
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-name { flex: 1; color: var(--text-muted); text-transform: capitalize; }
+    .breakdown-bar-wrap { flex: 2; height: 5px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+    .breakdown-bar { height: 100%; border-radius: 3px; background: var(--accent); }
+    .breakdown-score { width: 55px; text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text); }
+
+    /* Backup trades */
+    .backup-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .backup-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .backup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .backup-trade { font-size: 0.82rem; font-weight: 600; color: var(--amber); }
+    .backup-conf { font-size: 0.72rem; color: var(--text-muted); }
+    .backup-rationale { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Rejected contracts panel */
+    .rejected-panel {
+      margin-top: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .rejected-panel-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-dim);
+      padding: 8px 12px;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .rejected-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.76rem;
+    }
+    .rejected-table th {
+      text-align: left;
+      padding: 5px 10px;
+      color: var(--text-dim);
+      font-weight: 600;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+    }
+    .rejected-table td {
+      padding: 5px 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      vertical-align: middle;
+    }
+    .rejected-table tr:last-child td { border-bottom: none; }
+    .rejected-table tr.selected-row td { background: rgba(34,197,94,0.06); color: var(--text); }
+    .rejected-badge {
+      display: inline-block;
+      font-size: 0.63rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .rejected-badge.selected { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+    .rejected-badge.rejected { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+    /* Raw data panel */
+    .raw-pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-dim);
+    }
+    .empty-state-icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+    .empty-state h2 { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+    .empty-state p { font-size: 0.82rem; line-height: 1.6; }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      padding: 14px 0 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-header .count-badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1px 7px;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="logo-dot"></div>
+    <span class="header-title">Options Scanner</span>
+    <span class="header-sub">Buy Call Research Tool · v1</span>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-danger" onclick="shutdownServer()">Shutdown</button>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Saved watchlists -->
+    <div class="sidebar-section">
+      <div class="sidebar-label">Saved Watchlists</div>
+      <div class="watchlist-load">
+        <select id="watchlistSelect" onchange="loadWatchlist(this.value)">
+          <option value="">— select a watchlist —</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Ticker input -->
+    <div class="sidebar-section" style="flex:1">
+      <div class="sidebar-label">Tickers</div>
+      <textarea id="tickerInput" placeholder="AAPL | Apple Inc | no&#10;MSFT | Microsoft | no&#10;SPY | S&P 500 ETF | yes"></textarea>
+      <div class="ticker-format-hint">Format: <strong>SYMBOL | Name | etf?(yes/no)</strong></div>
+
+      <div class="save-row">
+        <input id="watchlistName" type="text" placeholder="watchlist name…" />
+        <button class="btn btn-ghost" onclick="saveWatchlist()">Save</button>
+      </div>
+    </div>
+
+    <!-- Run button -->
+    <div class="sidebar-section">
+      <button id="runBtn" class="btn btn-primary run-btn" onclick="runScan()">▶ Run Scan</button>
+      <button id="cancelBtn" class="btn btn-ghost run-btn" onclick="cancelScan()" style="display:none;margin-top:6px;">✕ Cancel</button>
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-label" id="progressLabel"></div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="mainContent">
+    <div class="empty-state">
+      <div class="empty-state-icon">📊</div>
+      <h2>No scan results yet</h2>
+      <p>Enter tickers in the panel on the left,<br>then click <strong>Run Scan</strong>.</p>
+    </div>
+  </main>
+
+</div>
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────────
+  let scanAborted = false;
+  let currentResults = null;
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+  window.addEventListener('DOMContentLoaded', () => {
+    loadWatchlistList();
+  });
+
+  // ── Watchlists ─────────────────────────────────────────────────────────────
+  async function loadWatchlistList() {
+    try {
+      const r = await fetch('/api/watchlists');
+      const data = await r.json();
+      const sel = document.getElementById('watchlistSelect');
+      sel.innerHTML = '<option value="">— select a watchlist —</option>';
+      (data.watchlists || []).forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w.filename.replace('.json', '');
+        opt.textContent = `${w.name} (${w.ticker_count})`;
+        sel.appendChild(opt);
+      });
+    } catch (e) { console.error('watchlist load failed', e); }
+  }
+
+  async function loadWatchlist(name) {
+    if (!name) return;
+    try {
+      const r = await fetch(`/api/watchlist/${name}`);
+      const data = await r.json();
+      const lines = (data.tickers || []).map(t =>
+        `${t.symbol} | ${t.name || t.symbol} | ${t.is_etf ? 'yes' : 'no'}`
+      ).join('\n');
+      document.getElementById('tickerInput').value = lines;
+    } catch (e) { alert('Could not load watchlist.'); }
+  }
+
+  async function saveWatchlist() {
+    const name = document.getElementById('watchlistName').value.trim();
+    if (!name) { alert('Enter a watchlist name first.'); return; }
+    const tickers = parseTickers();
+    if (!tickers.length) { alert('No tickers to save.'); return; }
+    const payload = { name, tickers };
+    try {
+      await fetch(`/api/watchlist/${name}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      await loadWatchlistList();
+      alert(`Saved "${name}" with ${tickers.length} ticker(s).`);
+    } catch (e) { alert('Save failed.'); }
+  }
+
+  // ── Parse tickers ─────────────────────────────────────────────────────────
+  function parseTickers() {
+    const raw = document.getElementById('tickerInput').value;
+    const tickers = [];
+    raw.split('\n').forEach(line => {
+      line = line.trim();
+      if (!line || line.startsWith('#')) return;
+      const parts = line.split('|').map(p => p.trim());
+      const symbol = parts[0].toUpperCase();
+      if (!symbol) return;
+      tickers.push({
+        symbol,
+        name: parts[1] || symbol,
+        is_etf: (parts[2] || '').toLowerCase() === 'yes',
+      });
+    });
+    return tickers;
+  }
+
+  // ── Scan ─────────────────────────────────────────────────────────────────
+  async function runScan() {
+    const tickers = parseTickers();
+    if (!tickers.length) { alert('Enter at least one ticker.'); return; }
+
+    scanAborted = false;
+    setScanning(true, tickers.length);
+
+    try {
+      const r = await fetch('/api/scan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tickers, delay: 2 }),
+      });
+
+      if (scanAborted) { renderEmpty('Scan cancelled.'); return; }
+
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({}));
+        renderError(err.detail || `Server error ${r.status}`);
+        return;
+      }
+
+      const data = await r.json();
+      currentResults = data;
+      renderResults(data);
+    } catch (e) {
+      if (!scanAborted) renderError(String(e));
+    } finally {
+      setScanning(false);
+    }
+  }
+
+  function cancelScan() {
+    scanAborted = true;
+    setScanning(false);
+    renderEmpty('Scan cancelled.');
+  }
+
+  function setScanning(active, total) {
+    document.getElementById('runBtn').disabled = active;
+    document.getElementById('runBtn').style.display = active ? 'none' : 'block';
+    document.getElementById('cancelBtn').style.display = active ? 'block' : 'none';
+    document.getElementById('progressWrap').style.display = active ? 'block' : 'none';
+    document.getElementById('progressLabel').style.display = active ? 'block' : 'none';
+    if (active) {
+      document.getElementById('progressBar').style.width = '0%';
+      const estSec = total * 14;
+      const estMin = estSec >= 60 ? `~${Math.ceil(estSec/60)} min` : `~${estSec}s`;
+      document.getElementById('progressLabel').textContent = `Scanning ${total} ticker(s) — est. ${estMin}`;
+      // Animate progress bar (simulated — actual progress from server stream isn't used in v1)
+      let pct = 0;
+      const interval = setInterval(() => {
+        if (!active || pct >= 90) { clearInterval(interval); return; }
+        pct += (90 - pct) * 0.05;
+        document.getElementById('progressBar').style.width = pct + '%';
+      }, 300);
+    } else {
+      document.getElementById('progressBar').style.width = '100%';
+    }
+  }
+
+  // ── Render ────────────────────────────────────────────────────────────────
+  function renderEmpty(msg) {
+    document.getElementById('mainContent').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">📊</div>
+        <h2>${msg}</h2>
+        <p>Enter tickers and click Run Scan.</p>
+      </div>`;
+  }
+
+  function renderError(msg) {
+    document.getElementById('mainContent').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">⚠️</div>
+        <h2>Scan failed</h2>
+        <p>${msg}</p>
+      </div>`;
+  }
+
+  function renderResults(data) {
+    const results = data.results || [];
+    const summary = data.summary || {};
+
+    const buys    = results.filter(r => r.recommendation?.trade === 'BUY CALL');
+    const watches = results.filter(r => r.recommendation?.trade === 'WATCH');
+    const nos     = results.filter(r => r.recommendation?.trade === 'NO TRADE');
+
+    let html = '';
+
+    // Summary bar
+    html += `<div class="summary-bar">
+      <span class="summary-chip chip-buy">✅ Buy Call: ${buys.length}</span>
+      ${watches.length ? `<span class="summary-chip chip-watch">👁 Watch: ${watches.length}</span>` : ''}
+      <span class="summary-chip chip-no">✗ No Trade: ${nos.length}</span>
+      <span class="summary-chip chip-avg">Avg Score: ${summary.avg_score ?? '—'}</span>
+    </div>`;
+
+    // BUY CALL section
+    if (buys.length) {
+      html += `<div class="section-header">Buy Call Candidates <span class="count-badge">${buys.length}</span></div>`;
+      html += `<div class="results-grid">`;
+      buys.forEach(r => { html += renderCard(r); });
+      html += `</div>`;
+    }
+
+    // WATCH section
+    if (watches.length) {
+      html += `<div class="section-header" style="margin-top:28px;">Watch List <span class="count-badge">${watches.length}</span></div>`;
+      html += `<div class="results-grid">`;
+      watches.forEach(r => { html += renderCard(r); });
+      html += `</div>`;
+    }
+
+    // NO TRADE section
+    if (nos.length) {
+      html += `<div class="section-header" style="margin-top:28px;">No Trade <span class="count-badge">${nos.length}</span></div>`;
+      html += `<div class="results-grid">`;
+      nos.forEach(r => { html += renderCard(r); });
+      html += `</div>`;
+    }
+
+    document.getElementById('mainContent').innerHTML = html;
+  }
+
+  function renderCard(r) {
+    const rec = r.recommendation || {};
+    const trade = rec.trade;
+    const isBuy   = trade === 'BUY CALL';
+    const isWatch = trade === 'WATCH';
+    const score = r.score || 0;
+    const scoreClass = score >= 75 ? 'score-high' : score >= 60 ? 'score-mid' : 'score-low';
+    const cardClass = isBuy ? 'buy-call' : isWatch ? 'watch' : 'no-trade';
+    const badgeClass = isBuy ? 'badge-buy' : isWatch ? 'badge-watch' : 'badge-no';
+    const conf = rec.confidence; // object {checks, passed, total, pct} for BUY CALL, else null
+
+    // Summary reasons / blocks
+    const reasonTags = (rec.summary_reasons || []).slice(0, 5).map(r =>
+      `<span class="reason-tag ${isBuy ? '' : 'block'}">${r}</span>`
+    ).join('');
+
+    // Trade meta row
+    let tradeMeta = '';
+    if (isBuy && rec.strike && rec.expiration) {
+      const strike  = rec.strike.strike ? '$' + rec.strike.strike : '—';
+      const delta   = rec.strike.delta != null ? 'Δ' + rec.strike.delta.toFixed(2) : '';
+      const strikeLabel = delta ? strike + ' (' + delta + ')' : strike;
+      const descr   = rec.strike.description || '';
+      const expLabel = rec.expiration.label || (rec.expiration.date || '—');
+      tradeMeta = `
+        <div class="trade-meta">
+          <div class="trade-meta-item"><div class="trade-meta-label">Strike</div><div class="trade-meta-val">${strikeLabel}</div></div>
+          <div class="trade-meta-item"><div class="trade-meta-label">Delta</div><div class="trade-meta-val">${descr}</div></div>
+          <div class="trade-meta-item"><div class="trade-meta-label">Expiration</div><div class="trade-meta-val">${expLabel}</div></div>
+          <div class="trade-meta-item"><div class="trade-meta-label">Hold</div><div class="trade-meta-val">${rec.expected_hold || '—'}</div></div>
+        </div>
+        <div class="trade-meta" style="margin-top:8px;">
+          <div class="trade-meta-item"><div class="trade-meta-label">Risk</div><div class="trade-meta-val">${rec.risk_level || '—'}</div></div>
+          <div class="trade-meta-item"><div class="trade-meta-label">Target</div><div class="trade-meta-val">${rec.option_target || '—'}</div></div>
+          <div class="trade-meta-item"><div class="trade-meta-label">Exp. Rationale</div><div class="trade-meta-val" style="font-size:0.72rem;color:var(--text-muted)">${rec.expiration.rationale || ''}</div></div>
+        </div>`;
+    }
+
+    // Why explanation
+    const whyItems = (rec.why_explanation || []).map(w => `<li>${w}</li>`).join('');
+
+    // Backups
+    let backupsHtml = '';
+    if (isBuy && (rec.backups || []).length) {
+      backupsHtml = `<div class="detail-panel" style="grid-column:span 2;margin-top:0">
+        <div class="detail-panel-title">Optional Strategies</div>
+        <div class="backup-list">`;
+      rec.backups.forEach(b => {
+        backupsHtml += `
+          <div class="backup-card">
+            <div class="backup-header">
+              <span class="backup-trade">⚠ ${b.trade}</span>
+              <span class="backup-conf">${b.confidence_pct != null ? `Data Quality: ${b.confidence_pct}%` : ''}</span>
+            </div>
+            <div class="backup-rationale">${b.rationale}</div>
+          </div>`;
+      });
+      backupsHtml += `</div></div>`;
+    }
+
+    // Rejected contracts panel
+    let rejectedHtml = '';
+    const contracts = (rec.rejected_contracts || []);
+    if (contracts.length) {
+      // Sort: SELECTED first, then rejected by expiration label
+      const selected = contracts.filter(c => c.reason === 'SELECTED');
+      const rejected = contracts.filter(c => c.reason !== 'SELECTED');
+      const sorted = [...selected, ...rejected];
+      const rows = sorted.map(c => {
+        const isSelected = c.reason === 'SELECTED';
+        const badge = isSelected
+          ? '<span class="rejected-badge selected">✓ Selected</span>'
+          : '<span class="rejected-badge rejected">✗ Rejected</span>';
+        const deltaStr = c.delta != null ? 'Δ' + c.delta.toFixed(2) : '—';
+        const askStr   = c.ask   != null ? '$' + c.ask.toFixed(2)   : '—';
+        const reason   = isSelected ? '' : c.reason;
+        return `<tr class="${isSelected ? 'selected-row' : ''}">
+          <td>${c.label || '—'}</td>
+          <td>${deltaStr}</td>
+          <td>${c.spread != null ? c.spread + '%' : 'N/A'}</td>
+          <td>${c.oi != null ? c.oi.toLocaleString() : '—'}</td>
+          <td>${askStr}</td>
+          <td>${badge}</td>
+          <td style="color:var(--text-dim);font-size:0.7rem">${reason}</td>
+        </tr>`;
+      }).join('');
+      rejectedHtml = `
+        <div class="rejected-panel">
+          <div class="rejected-panel-title">Contract Evaluation (75–105 DTE Window)</div>
+          <table class="rejected-table">
+            <thead><tr>
+              <th>Contract</th><th>Delta</th><th>Spread</th><th>OI</th><th>Ask</th><th>Status</th><th>Reason</th>
+            </tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>`;
+    }
+
+    // Score breakdown
+    const bd = r.breakdown || {};
+    const bdRows = Object.entries(bd).map(([name, cat]) => {
+      const pct = cat.max > 0 ? (cat.score / cat.max * 100) : 0;
+      const label = name.replace(/_/g, ' ');
+      return `<div class="breakdown-row">
+        <span class="breakdown-name">${label}</span>
+        <div class="breakdown-bar-wrap"><div class="breakdown-bar" style="width:${pct}%"></div></div>
+        <span class="breakdown-score">${cat.score}/${cat.max}</span>
+      </div>`;
+    }).join('');
+
+    // Raw data key stats
+    const raw = r.raw_data || {};
+    const statLines = [
+      raw.current_price   ? `Price: $${raw.current_price.toFixed(2)}` : null,
+      raw.sma50           ? `50 SMA: $${raw.sma50.toFixed(2)}` : null,
+      raw.sma200          ? `200 SMA: $${raw.sma200.toFixed(2)}` : null,
+      raw.rsi             ? `RSI: ${raw.rsi}` : null,
+      raw.iv              ? `IV: ${raw.iv}%` : null,
+      raw.open_interest   ? `OI: ${raw.open_interest.toLocaleString()}` : null,
+      raw.spread_pct      ? `Spread: ${raw.spread_pct}%` : null,
+      raw.days_to_earnings !== null && raw.days_to_earnings !== undefined
+                          ? `Earnings: ${raw.days_to_earnings}d away` : null,
+      raw.vol_ratio_5_20  ? `Vol ratio: ${raw.vol_ratio_5_20}x` : null,
+      raw.data_source     ? `Source: ${raw.data_source}` : null,
+    ].filter(Boolean).join('\n');
+
+    const id = `card-${r.ticker}`;
+
+    return `
+    <div class="result-card ${cardClass}" id="${id}">
+      <div class="card-header" onclick="toggleCard('${id}')">
+        <div class="card-left">
+          <div>
+            <div class="ticker-name">${r.ticker}</div>
+            <div class="company-name">${(raw.name || r.ticker)}</div>
+          </div>
+          <span class="trade-badge ${badgeClass}">${rec.trade}</span>
+        </div>
+        <div class="card-right">
+          ${isBuy && conf ? `
+            <div class="confidence-pill">
+              <div class="confidence-pct">${conf.passed}/${conf.total}</div>
+              <div class="confidence-lbl">Data Quality</div>
+            </div>` : ''}
+          <div class="score-circle ${scoreClass}">${Math.round(score)}</div>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+
+      <div class="card-summary">
+        <div class="summary-reasons">${reasonTags}</div>
+        ${rec.expected_catalyst ? `<div class="catalyst-line">
+          <span class="catalyst-icon">${isBuy ? '▶' : isWatch ? '⏳' : '⊘'}</span>
+          <span class="catalyst-text">${rec.expected_catalyst}</span>
+        </div>` : ''}
+      </div>
+
+      <div class="card-detail" id="${id}-detail">
+
+        <!-- Trade recommendation card -->
+        <div class="trade-card ${isBuy ? '' : 'no-trade-card'}">
+          <div class="trade-card-title">Recommended Trade</div>
+          <div class="trade-main-label ${isBuy ? '' : 'no-trade-label'}">${rec.trade}</div>
+          ${tradeMeta}
+        </div>
+
+        ${rejectedHtml}
+
+        ${(() => {
+          // Ranked-first panel (top BUY CALL only)
+          const rf = r.ranked_first;
+          if (!rf || !rf.is_top) return '';
+          const liItems = (rf.reasons || []).map(rr => `<li>${rr}</li>`).join('');
+          return `
+          <div class="ranked-first-panel">
+            <div class="ranked-first-header">
+              <span class="ranked-badge">#1 Today</span>
+              <span class="ranked-first-title">Why this ranked first</span>
+            </div>
+            <ul class="ranked-reasons">${liItems}</ul>
+          </div>`;
+        })()}
+
+        ${(() => {
+          // WATCH panel
+          if (!isWatch) return '';
+          const watchItems = (rec.watch_reasons || []).map(w =>
+            `<li><strong>${w.label}</strong> — ${w.detail}</li>`
+          ).join('');
+          const missingItems = rec.missing_requirements || [];
+          const tierLabels = { primary: 'Primary Blockers', secondary: 'Timing / Score', fine: 'Entry Confirmation' };
+          const tierOrder = ['primary', 'secondary', 'fine'];
+          let missingHtml = '';
+          tierOrder.forEach(tier => {
+            const group = missingItems.filter(m => m.tier === tier);
+            if (!group.length) return;
+            missingHtml += `<div class="missing-tier-header">${tierLabels[tier]}</div>`;
+            group.forEach(m => {
+              const icon = m.met ? '✔' : '✗';
+              const iconClass = m.met ? 'met' : 'unmet';
+              const labelClass = m.met ? 'met' : '';
+              const detail = m.met
+                ? `<span class="current" style="color:var(--green)">${m.target}</span>`
+                : `<span class="current">${m.current}</span><span class="arrow">→</span><span class="target">${m.target}</span>`;
+              missingHtml += `<div class="missing-req-row">
+                <span class="missing-req-icon ${iconClass}">${icon}</span>
+                <span class="missing-req-label ${labelClass}">${m.label}</span>
+                <span class="missing-req-detail">${detail}</span>
+              </div>`;
+            });
+          });
+          const missingBlock = missingHtml ? `
+            <div class="missing-reqs">
+              <div class="missing-reqs-title">Missing Requirements</div>
+              ${missingHtml}
+            </div>` : '';
+          return `
+          <div class="watch-panel">
+            <div class="watch-panel-title">👁 Watch — What to wait for</div>
+            <ul class="watch-reasons">${watchItems || '<li>Monitor for entry confirmation.</li>'}</ul>
+            ${missingBlock}
+          </div>`;
+        })()}
+
+        <div class="detail-grid">
+
+          <!-- Why this strategy -->
+          <div class="detail-panel" style="grid-column:span 2">
+            <div class="detail-panel-title">Why ${isBuy ? 'Buy Call' : isWatch ? 'Watch?' : 'No Trade?'}</div>
+            <ul class="why-list">${whyItems || '<li>No explanation generated.</li>'}</ul>
+          </div>
+
+          <!-- Score breakdown -->
+          <div class="detail-panel">
+            <div class="detail-panel-title">Score Breakdown</div>
+            ${bdRows || '<span style="color:var(--text-dim);font-size:.78rem">No breakdown available.</span>'}
+          </div>
+
+          <!-- Data Quality checklist (BUY CALL only) -->
+          ${isBuy && conf ? `
+          <div class="detail-panel">
+            <div class="detail-panel-title">Data Quality</div>
+            <div class="confidence-checklist">
+              ${(conf.checks || []).map(c => `
+              <div class="conf-check-row ${c.passed ? 'pass' : ''}">
+                <span class="conf-check-icon">${c.passed ? '✔' : '✗'}</span>
+                <div>
+                  <div class="conf-check-label">${c.label}</div>
+                  ${c.note ? `<div class="conf-check-note">${c.note}</div>` : ''}
+                </div>
+              </div>`).join('')}
+            </div>
+            <div class="conf-summary">Data Quality <span class="conf-pct-large">${conf.passed}/${conf.total} Passed</span></div>
+          </div>` : `
+          <!-- Key data (fallback for NO TRADE) -->
+          <div class="detail-panel">
+            <div class="detail-panel-title">Key Data</div>
+            <pre class="raw-pre">${statLines || 'No data.'}</pre>
+          </div>`}
+
+
+          ${backupsHtml}
+
+        </div>
+
+        <!-- Key data below the grid for BUY CALL -->
+        ${isBuy ? `
+        <div class="detail-panel" style="margin-top:16px">
+          <div class="detail-panel-title">Key Data</div>
+          <pre class="raw-pre">${statLines || 'No data.'}</pre>
+        </div>` : ''}
+      </div>
+    </div>`;
+  }
+
+  function toggleCard(id) {
+    const header = document.querySelector(`#${id} .card-header`);
+    const detail = document.getElementById(`${id}-detail`);
+    header.classList.toggle('open');
+    detail.classList.toggle('open');
+  }
+
+  // ── Shutdown ───────────────────────────────────────────────────────────────
+  async function shutdownServer() {
+    if (!confirm('Shut down the Options Scanner server?')) return;
+    try {
+      await fetch('/api/shutdown', { method: 'POST' });
+    } catch (e) {}
+    document.body.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:16px;color:#8892a4;font-family:Inter,sans-serif;">
+        <div style="font-size:2rem">✓</div>
+        <div>Server shut down. You can close this tab.</div>
+      </div>`;
+  }
+</script>
+</body>
+</html>

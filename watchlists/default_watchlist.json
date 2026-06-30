@@ -1,0 +1,13 @@
+{
+  "name": "Default Watchlist",
+  "tickers": [
+    {"symbol": "AAPL", "name": "Apple Inc", "is_etf": false},
+    {"symbol": "MSFT", "name": "Microsoft Corp", "is_etf": false},
+    {"symbol": "NVDA", "name": "NVIDIA Corp", "is_etf": false},
+    {"symbol": "GOOGL", "name": "Alphabet Inc", "is_etf": false},
+    {"symbol": "META", "name": "Meta Platforms", "is_etf": false},
+    {"symbol": "AMZN", "name": "Amazon.com", "is_etf": false},
+    {"symbol": "SPY", "name": "SPDR S&P 500 ETF", "is_etf": true},
+    {"symbol": "QQQ", "name": "Invesco QQQ Trust", "is_etf": true}
+  ]
+}
